@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.fedorov.andrii.andriiovych.bookshelf.ui.BooksApp
 import com.fedorov.andrii.andriiovych.bookshelf.ui.theme.BookshelfTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BookshelfTheme {
-
+                BooksApp()
             }
         }
     }

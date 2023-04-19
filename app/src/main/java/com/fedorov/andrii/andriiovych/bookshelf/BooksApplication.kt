@@ -1,4 +1,4 @@
-package com.fedorov.andrii.andriiovych.bookshelf.ui
+package com.fedorov.andrii.andriiovych.bookshelf
 
 import android.app.Application
 import com.fedorov.andrii.andriiovych.bookshelf.data.AppContainer
