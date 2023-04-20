@@ -1,8 +1,6 @@
 package com.fedorov.andrii.andriiovych.bookshelf.ui
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -28,6 +26,20 @@ class BooksViewModel(
     var booksUIState: BooksUIState by mutableStateOf(BooksUIState.Loading)
         private set
 
+    private val _searchWidgetState : MutableState<SearchWidgetState> =
+        mutableStateOf( SearchWidgetState.CLOSED)
+    val searchWidgetState : State<SearchWidgetState> = _searchWidgetState
+
+    private val _searchTextState: MutableState<String> =
+        mutableStateOf("")
+    val searchTextState :State<String> = _searchTextState
+
+    fun updateSearchWidgetState(newValue: SearchWidgetState){
+     _searchWidgetState.value = newValue
+    }
+    fun updateSearchTextState(newValue: String){
+        _searchTextState.value = newValue
+    }
     init {
         getBooks()
     }
@@ -54,4 +66,9 @@ class BooksViewModel(
             }
         }
     }
+}
+
+enum class SearchWidgetState{
+    OPENED,
+    CLOSED
 }

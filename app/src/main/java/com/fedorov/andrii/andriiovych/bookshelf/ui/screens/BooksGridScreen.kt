@@ -1,5 +1,6 @@
 package com.fedorov.andrii.andriiovych.bookshelf.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -24,14 +25,15 @@ import com.fedorov.andrii.andriiovych.bookshelf.data.Book
 @Composable
 fun BooksGridScreen(
     books:List<Book>,
-    modifier: Modifier
+    modifier: Modifier,
+    onBookClicked: (Book) -> Unit
 ){
     LazyVerticalGrid(
         columns =GridCells.Adaptive(150.dp) ,
         contentPadding = PaddingValues(4.dp)
     ){
         itemsIndexed(books){_,book ->
-            BooksCard(book = book)
+            BooksCard(book = book,modifier,onBookClicked)
             
         }
     }
@@ -40,13 +42,15 @@ fun BooksGridScreen(
 @Composable
 fun BooksCard(
     book: Book,
-    modifier: Modifier = Modifier
+    modifier: Modifier,
+    onBookClicked: (Book) -> Unit
 ) {
     Card(
         modifier = modifier
             .padding(4.dp)
             .fillMaxWidth()
-            .requiredHeight(296.dp),
+            .requiredHeight(296.dp)
+            .clickable { onBookClicked(book) },
         elevation = 8.dp
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
